@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="$Resources:Lists_MessagesBuffer_Title;"
+                Description="$Resources:Lists_MessagesBuffer_Description;"
+                OnQuickLaunch="TRUE"
+                TemplateType="10002"
+                Url="Lists/MessagesBuffer" />
+</Elements>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="$Resources:Lists_Categories_Title;"
+                Description="$Resources:Lists_Categories_Description;"
+                OnQuickLaunch="TRUE"
+                TemplateType="10000"
+                Url="Lists/Categories" />
+</Elements>

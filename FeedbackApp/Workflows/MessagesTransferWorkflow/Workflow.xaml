@@ -1,0 +1,383 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="FeedbackApp.Workflows.MessagesTransferWorkflow.Workflow" sap2010:ExpressionActivityEditor.ExpressionActivityEditor="C#"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities"
+ xmlns:msdad="clr-namespace:Microsoft.SharePoint.DesignTime.Activities.Design;assembly=Microsoft.SharePoint.DesignTime.Activities.Design"
+ xmlns:p="wf://workflow.windows.net/$Activities"
+ xmlns:p1="http://schemas.microsoft.com/workflow/2012/07/xaml/activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Text</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="WorkflowSequence">
+    <p:AppOnlySequence>
+      <p:AppOnlySequence.Body>
+        <Sequence>
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:Int32" Name="messageCategoryId" />
+            <Variable x:TypeArguments="x:String" Name="messageText" />
+            <Variable x:TypeArguments="x:String" Name="messageTitle" />
+            <Variable x:TypeArguments="sco:Collection(x:String)" Name="messageTo" />
+            <Variable x:TypeArguments="sco:Collection(x:String)" Name="messageCc" />
+            <Variable x:TypeArguments="s:DateTime" Name="messageSent" />
+            <Variable x:TypeArguments="x:Int32" Name="messageFromId" />
+          </Sequence.Variables>
+          <Sequence DisplayName="MessageBufferItemValues">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="p1:DynamicValue" Name="messageBufferItemValues" />
+            </Sequence.Variables>
+            <p:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}">
+              <p:LookupSPListItem.ItemId>
+                <InArgument x:TypeArguments="x:Int32">
+                  <p1:ExpressionContainerValue x:TypeArguments="x:Int32">
+                    <p:GetCurrentItemId />
+                  </p1:ExpressionContainerValue>
+                </InArgument>
+              </p:LookupSPListItem.ItemId>
+              <p:LookupSPListItem.ListId>
+                <InArgument x:TypeArguments="s:Guid">
+                  <p1:ExpressionContainerValue x:TypeArguments="s:Guid">
+                    <p:GetCurrentListId />
+                  </p1:ExpressionContainerValue>
+                </InArgument>
+              </p:LookupSPListItem.ListId>
+              <p:LookupSPListItem.Result>
+                <OutArgument x:TypeArguments="p1:DynamicValue">
+                  <mca:CSharpReference x:TypeArguments="p1:DynamicValue">messageBufferItemValues</mca:CSharpReference>
+                </OutArgument>
+              </p:LookupSPListItem.Result>
+              <sap2010:WorkflowViewState.IdRef>LookupSPListItem_1</sap2010:WorkflowViewState.IdRef>
+            </p:LookupSPListItem>
+            <p1:GetODataProperties DisplayName="GetDynamicValueProperties">
+              <p1:GetODataProperties.Source>
+                <InArgument x:TypeArguments="p1:DynamicValue">
+                  <mca:CSharpValue x:TypeArguments="p1:DynamicValue">messageBufferItemValues</mca:CSharpValue>
+                </InArgument>
+              </p1:GetODataProperties.Source>
+              <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                <OutArgument x:TypeArguments="x:Int32" x:Key="MessagesBufferItemCategoryId">
+                  <mca:CSharpReference x:TypeArguments="x:Int32">messageCategoryId</mca:CSharpReference>
+                </OutArgument>
+                <OutArgument x:TypeArguments="x:String" x:Key="MessagesBufferItemText">
+                  <mca:CSharpReference x:TypeArguments="x:String">messageText</mca:CSharpReference>
+                </OutArgument>
+                <OutArgument x:TypeArguments="x:Int32" x:Key="AuthorId">
+                  <mca:CSharpReference x:TypeArguments="x:Int32">messageFromId</mca:CSharpReference>
+                </OutArgument>
+                <OutArgument x:TypeArguments="s:DateTime" x:Key="Created">
+                  <mca:CSharpReference x:TypeArguments="s:DateTime">messageSent</mca:CSharpReference>
+                </OutArgument>
+              </scg:Dictionary>
+              <sap2010:WorkflowViewState.IdRef>GetODataProperties_1</sap2010:WorkflowViewState.IdRef>
+            </p1:GetODataProperties>
+            <sap2010:WorkflowViewState.IdRef>Sequence_1</sap2010:WorkflowViewState.IdRef>
+          </Sequence>
+          <Sequence DisplayName="CategoryItemValues">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="p1:DynamicValue" Name="categoryItemValues" />
+            </Sequence.Variables>
+            <p:LookupSPListItem ItemGuid="{x:Null}" Properties="{x:Null}">
+              <p:LookupSPListItem.ItemId>
+                <InArgument x:TypeArguments="x:Int32">
+                  <mca:CSharpValue x:TypeArguments="x:Int32">messageCategoryId</mca:CSharpValue>
+                </InArgument>
+              </p:LookupSPListItem.ItemId>
+              <p:LookupSPListItem.ListId>
+                <InArgument x:TypeArguments="s:Guid">
+                  <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/Categories;}")</mca:CSharpValue>
+                </InArgument>
+              </p:LookupSPListItem.ListId>
+              <p:LookupSPListItem.Result>
+                <OutArgument x:TypeArguments="p1:DynamicValue">
+                  <mca:CSharpReference x:TypeArguments="p1:DynamicValue">categoryItemValues</mca:CSharpReference>
+                </OutArgument>
+              </p:LookupSPListItem.Result>
+              <sap2010:WorkflowViewState.IdRef>LookupSPListItem_2</sap2010:WorkflowViewState.IdRef>
+            </p:LookupSPListItem>
+            <p1:GetODataProperties DisplayName="GetDynamicValueProperties">
+              <p1:GetODataProperties.Source>
+                <InArgument x:TypeArguments="p1:DynamicValue">
+                  <mca:CSharpValue x:TypeArguments="p1:DynamicValue">categoryItemValues</mca:CSharpValue>
+                </InArgument>
+              </p1:GetODataProperties.Source>
+              <scg:Dictionary x:TypeArguments="x:String, OutArgument">
+                <OutArgument x:TypeArguments="x:String" x:Key="CategoriesItemMessageTitle">
+                  <mca:CSharpReference x:TypeArguments="x:String">messageTitle</mca:CSharpReference>
+                </OutArgument>
+                <OutArgument x:TypeArguments="sco:Collection(x:String)" x:Key="CategoriesItemMessageToId/results">
+                  <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">messageTo</mca:CSharpReference>
+                </OutArgument>
+                <OutArgument x:TypeArguments="sco:Collection(x:String)" x:Key="CategoriesItemMessageCcId/results">
+                  <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">messageCc</mca:CSharpReference>
+                </OutArgument>
+              </scg:Dictionary>
+              <sap2010:WorkflowViewState.IdRef>GetODataProperties_2</sap2010:WorkflowViewState.IdRef>
+            </p1:GetODataProperties>
+            <sap2010:WorkflowViewState.IdRef>Sequence_2</sap2010:WorkflowViewState.IdRef>
+          </Sequence>
+          <Sequence DisplayName="CreateMessage">
+            <Sequence DisplayName="CheckMessageToValue">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Int32" Name="messageToCount" />
+              </Sequence.Variables>
+              <p1:CountCollection x:TypeArguments="x:String">
+                <p1:CountCollection.Collection>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">messageTo</mca:CSharpValue>
+                  </InArgument>
+                </p1:CountCollection.Collection>
+                <p1:CountCollection.Result>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">messageToCount</mca:CSharpReference>
+                  </OutArgument>
+                </p1:CountCollection.Result>
+                <sap2010:WorkflowViewState.IdRef>CountCollection`1_1</sap2010:WorkflowViewState.IdRef>
+              </p1:CountCollection>
+              <If>
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">messageToCount == 0</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <p1:BuildCollection x:TypeArguments="x:String">
+                    <p1:BuildCollection.Result>
+                      <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                        <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">messageTo</mca:CSharpReference>
+                      </OutArgument>
+                    </p1:BuildCollection.Result>
+                    <sap2010:WorkflowViewState.IdRef>BuildCollection`1_1</sap2010:WorkflowViewState.IdRef>
+                  </p1:BuildCollection>
+                </If.Then>
+                <sap2010:WorkflowViewState.IdRef>If_1</sap2010:WorkflowViewState.IdRef>
+              </If>
+              <sap2010:WorkflowViewState.IdRef>Sequence_3</sap2010:WorkflowViewState.IdRef>
+            </Sequence>
+            <Sequence DisplayName="CheckMessageCcValue">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:Int32" Name="messageCcCount" />
+              </Sequence.Variables>
+              <p1:CountCollection x:TypeArguments="x:String">
+                <p1:CountCollection.Collection>
+                  <InArgument x:TypeArguments="scg:ICollection(x:String)">
+                    <mca:CSharpValue x:TypeArguments="scg:ICollection(x:String)">messageCc</mca:CSharpValue>
+                  </InArgument>
+                </p1:CountCollection.Collection>
+                <p1:CountCollection.Result>
+                  <OutArgument x:TypeArguments="x:Int32">
+                    <mca:CSharpReference x:TypeArguments="x:Int32">messageCcCount</mca:CSharpReference>
+                  </OutArgument>
+                </p1:CountCollection.Result>
+                <sap2010:WorkflowViewState.IdRef>CountCollection`1_2</sap2010:WorkflowViewState.IdRef>
+              </p1:CountCollection>
+              <If>
+                <If.Condition>
+                  <InArgument x:TypeArguments="x:Boolean">
+                    <mca:CSharpValue x:TypeArguments="x:Boolean">messageCcCount == 0</mca:CSharpValue>
+                  </InArgument>
+                </If.Condition>
+                <If.Then>
+                  <p1:BuildCollection x:TypeArguments="x:String">
+                    <p1:BuildCollection.Result>
+                      <OutArgument x:TypeArguments="sco:Collection(x:String)">
+                        <mca:CSharpReference x:TypeArguments="sco:Collection(x:String)">messageCc</mca:CSharpReference>
+                      </OutArgument>
+                    </p1:BuildCollection.Result>
+                    <sap2010:WorkflowViewState.IdRef>BuildCollection`1_2</sap2010:WorkflowViewState.IdRef>
+                  </p1:BuildCollection>
+                </If.Then>
+                <sap2010:WorkflowViewState.IdRef>If_2</sap2010:WorkflowViewState.IdRef>
+              </If>
+              <sap2010:WorkflowViewState.IdRef>Sequence_4</sap2010:WorkflowViewState.IdRef>
+            </Sequence>
+            <p:CreateListItem CreatedListItemProperties="{x:Null}" ItemGuid="{x:Null}" ItemId="{x:Null}" ListItemProperties="{x:Null}">
+              <p:CreateListItem.ListId>
+                <InArgument x:TypeArguments="s:Guid">
+                  <mca:CSharpValue x:TypeArguments="s:Guid">System.Guid.Parse("{$ListId:Lists/Messages;}")</mca:CSharpValue>
+                </InArgument>
+              </p:CreateListItem.ListId>
+              <p:CreateListItem.ListItemPropertiesDynamicValue>
+                <InArgument x:TypeArguments="p1:DynamicValue">
+                  <p1:SetDynamicValueProperties>
+                    <scg:Dictionary x:TypeArguments="x:String, InArgument">
+                      <InArgument x:TypeArguments="x:String" x:Key="Title">
+                        <mca:CSharpValue x:TypeArguments="x:String">messageTitle</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="sco:Collection(x:String)" x:Key="MessagesItemToId/results">
+                        <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">messageTo</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="sco:Collection(x:String)" x:Key="MessagesItemCcId/results">
+                        <mca:CSharpValue x:TypeArguments="sco:Collection(x:String)">messageCc</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:Int32" x:Key="MessagesItemFromId">
+                        <mca:CSharpValue x:TypeArguments="x:Int32">messageFromId</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="s:DateTime" x:Key="MessagesItemSent">
+                        <mca:CSharpValue x:TypeArguments="s:DateTime">messageSent</mca:CSharpValue>
+                      </InArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="MessagesItemText">
+                        <mca:CSharpValue x:TypeArguments="x:String">messageText</mca:CSharpValue>
+                      </InArgument>
+                    </scg:Dictionary>
+                  </p1:SetDynamicValueProperties>
+                </InArgument>
+              </p:CreateListItem.ListItemPropertiesDynamicValue>
+              <sap2010:WorkflowViewState.IdRef>CreateListItem_1</sap2010:WorkflowViewState.IdRef>
+            </p:CreateListItem>
+            <sap2010:WorkflowViewState.IdRef>Sequence_5</sap2010:WorkflowViewState.IdRef>
+          </Sequence>
+          <p:DeleteListItem ItemGuid="{x:Null}" DisplayName="DeleteMessageBufferItem">
+            <p:DeleteListItem.ItemId>
+              <InArgument x:TypeArguments="x:Int32">
+                <p1:ExpressionContainerValue x:TypeArguments="x:Int32">
+                  <p:GetCurrentItemId />
+                </p1:ExpressionContainerValue>
+              </InArgument>
+            </p:DeleteListItem.ItemId>
+            <p:DeleteListItem.ListId>
+              <InArgument x:TypeArguments="s:Guid">
+                <p1:ExpressionContainerValue x:TypeArguments="s:Guid">
+                  <p:GetCurrentListId />
+                </p1:ExpressionContainerValue>
+              </InArgument>
+            </p:DeleteListItem.ListId>
+            <sap2010:WorkflowViewState.IdRef>DeleteListItem_1</sap2010:WorkflowViewState.IdRef>
+          </p:DeleteListItem>
+          <sap2010:WorkflowViewState.IdRef>Sequence_6</sap2010:WorkflowViewState.IdRef>
+        </Sequence>
+      </p:AppOnlySequence.Body>
+      <sap2010:WorkflowViewState.IdRef>AppOnlySequence_1</sap2010:WorkflowViewState.IdRef>
+    </p:AppOnlySequence>
+    <sap2010:WorkflowViewState.IdRef>Sequence_7</sap2010:WorkflowViewState.IdRef>
+    <sads:DebugSymbol.Symbol>d4IBQzpcVXNlcnNcZGthbGFzaG5pa292XGRvY3VtZW50c1x2aXN1YWwgc3R1ZGlvIDIwMTNcUHJvamVjdHNcT2ZmaWNlMzY1XEZlZWRiYWNrQXBwXFdvcmtmbG93c1xNZXNzYWdlc1RyYW5zZmVyV29ya2Zsb3dcV29ya2Zsb3cueGFtbDkiA5MCDgIBASMFkAIZAgECJQmNAhQCAQMvC2AWAwHUAWELiwEWAwGSAYwBC/oBFgIBB/sBC4sCHgIBBDMNSCIDAYMCSQ1eJQMB1QFlDXYiAwG4AXcNiQElAwGTAY0BDbEBGAIBarIBDdYBGAIBQtcBDfgBIAIBCIUCEYcCLwIBBv4BEYACLwIBBT0TPzEDAY4CRBNEdwMBhQI2EzgxAwGEAlETUWkDAfoBWhNaZgMB8QFME0xvAwHoAVcTV2UDAd8BVBNUZAMB1gFtE21/AwHLAXITcnIDAcIBaBNoYQMBuQGFAROFAXIDAa8BggETggFyAwGmAXoTemoDAZ0BfxN/ZQMBlAGRAQ+dASQCAX+eAQ+vARQCAWu2AQ/CASQCAVfDAQ/UARQCAUPfARP0ATICARHaARPaAX0CAQmGAhOGAikDAQYB/wET/wEpAwEFAT4VPisEAY4CATcVNysEAYQCAZkBFZkBaAMBiQGUARWUAW0DAYABoQEVoQFnAgFspQETrAEoAgF1vgEVvgFoAgFhuQEVuQFtAgFYxgEVxgFnAgFEygET0QEoAgFN8QEZ8QFiAgE65QEZ5QFwAgEy6AEZ6AFwAgEq4gEZ4gFjAgEi7gEZ7gFkAgEa6wEZ6wFjAgESqAEZqAF4AgF2zQEZzQF4AgFO</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.IdRef>FeedbackApp.Workflows.MessagesTransferWorkflow.Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="LookupSPListItem_1" sap:VirtualizedContainerService.HintSize="247,89">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
+              <msdad:ViewStateNameValue x:Key="ItemId" DisplayName="(current item)" Value="$CurrentItemId" />
+              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="(current list)" Value="$CurrentListId" />
+            </scg:Dictionary>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetODataProperties_1" sap:VirtualizedContainerService.HintSize="247,92" />
+      <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LookupSPListItem_2" sap:VirtualizedContainerService.HintSize="247,89">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
+              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="$Resources:Lists_Categories_Title;" Value="Lists/Categories" />
+            </scg:Dictionary>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetODataProperties_2" sap:VirtualizedContainerService.HintSize="247,92" />
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CountCollection`1_1" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="BuildCollection`1_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,210" />
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CountCollection`1_2" sap:VirtualizedContainerService.HintSize="464,22" />
+      <sap2010:ViewStateData Id="BuildCollection`1_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,210" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="CreateListItem_1" sap:VirtualizedContainerService.HintSize="200,68">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
+              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="$Resources:Lists_Messages_Title;" Value="Lists/Messages" />
+            </scg:Dictionary>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DeleteListItem_1" sap:VirtualizedContainerService.HintSize="200,68">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <scg:Dictionary x:TypeArguments="x:String, msdad:ViewStateNameValue" x:Key="SPLocalizedDisplayNames">
+              <msdad:ViewStateNameValue x:Key="ItemId" DisplayName="(current item)" Value="$CurrentItemId" />
+              <msdad:ViewStateNameValue x:Key="ListId" DisplayName="(current list)" Value="$CurrentListId" />
+            </scg:Dictionary>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="222,465">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="AppOnlySequence_1" sap:VirtualizedContainerService.HintSize="248,513" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="270,637">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FeedbackApp.Workflows.MessagesTransferWorkflow.Workflow_1" sap:VirtualizedContainerService.HintSize="310,717" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

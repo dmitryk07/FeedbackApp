@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="Pages">
+    <File Path="Pages\Feedback.aspx" Url="Pages/Feedback.aspx" ReplaceContent="TRUE" />
+    <File Path="Pages\Home.aspx" Url="Pages/Home.aspx" ReplaceContent="TRUE" />
+    <File Path="Pages\Permissions.aspx" Url="Pages/Permissions.aspx" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

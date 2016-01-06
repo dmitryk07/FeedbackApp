@@ -1,0 +1,49 @@
+﻿#formDiv {
+    width: 440px;
+    height: 400px;
+    padding: 10px;
+    border: 1px solid #dbdbdb;
+}
+
+#categoryValueDiv {
+    margin-top: 3px;
+}
+
+#categoriesSelect {
+    width: 100%;
+}
+
+#messageHeaderDiv {
+    margin-top: 15px;
+}
+
+#messageValueDiv {
+    padding-right: 12px;
+    margin-top: 3px;
+}
+
+#messageTextArea {
+    width: 100%;
+    height: 220px;
+}
+
+#buttonsDiv {
+    margin-top: 62px;
+    text-align: center;
+}
+
+#sendButton {
+    width: 150px;
+}
+
+#completionMessageTextDiv {
+    margin-top: 28px;
+}
+
+#errorMessageTextDiv {
+    margin-top: 28px;
+}
+
+.sectionSeparator {
+    margin: 28px 0 28px 0;
+}

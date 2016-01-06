@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ClientWebPart Name="Feedback" Title="$Resources:WebParts_Feedback_Title" Description="$Resources:WebParts_Feedback_Description" DefaultWidth="462" DefaultHeight="422">
+    <Content Type="html" Src="~appWebUrl/Pages/Feedback.aspx?Source=_Source_" />
+    <Properties>
+      <Property Name="Source"
+                WebDisplayName="$Resources:WebPartProperties_Source_Title;"
+                WebDescription="$Resources:WebPartProperties_Source_Description;"
+                Type="string"
+                DefaultValue=""
+                RequiresDesignerPermission="true" />
+    </Properties>
+  </ClientWebPart>
+</Elements>

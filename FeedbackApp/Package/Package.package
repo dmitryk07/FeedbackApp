@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="fa764bde-7191-4300-a869-17202fad4901" 
+        solutionId="fa764bde-7191-4300-a869-17202fad4901" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="FeedbackApp"
+        sharePointProductVersion="15.0">
+  <features>
+        <featureReference itemId="8104177e-8d24-4ad1-bfef-4ae88c219168" />
+  </features>
+</package>

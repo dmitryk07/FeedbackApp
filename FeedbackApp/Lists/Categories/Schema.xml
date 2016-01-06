@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns="http://schemas.microsoft.com/sharepoint/"
+      xmlns:ows="Microsoft SharePoint"
+      Title="$Resources:Lists_Categories_Title;"
+      Direction="$Resources:Direction;"
+      DisableAttachments="TRUE"
+      FolderCreation="FALSE"
+      Url="Lists/Categories"
+      BaseType="0">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01"
+                   Name="CategoriesItem"
+                   Inherits="TRUE"
+                   Version="0">
+        <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{ebe93b4f-b28c-4363-98e0-3398ac101472}" Name="CategoriesItemMessageTitle" />
+          <FieldRef ID="{72d7543d-bfcd-4fc7-9ae1-437f56c06000}" Name="CategoriesItemMessageTo" />
+          <FieldRef ID="{6893f633-8176-4308-874c-023b2877ab90}" Name="CategoriesItemMessageCc" />
+        </FieldRefs>
+        <Folder TargetName="Item" />
+      </ContentType>
+      <ContentTypeRef ID="0x0120" />
+    </ContentTypes>
+    <Fields>
+      <Field ID="{ebe93b4f-b28c-4363-98e0-3398ac101472}"
+             Name="CategoriesItemMessageTitle"
+             DisplayName="$Resources:Fields_CategoriesItemMessageTitle_Title;"
+             Type="Text"
+             Required="TRUE" />
+      <Field ID="{72d7543d-bfcd-4fc7-9ae1-437f56c06000}"
+             Name="CategoriesItemMessageTo"
+             DisplayName="$Resources:Fields_CategoriesItemMessageTo_Title;"
+             Type="UserMulti"
+             Mult="TRUE"
+             UserSelectionMode="PeopleOnly"
+             Required="TRUE" />
+      <Field ID="{6893f633-8176-4308-874c-023b2877ab90}"
+             Name="CategoriesItemMessageCc"
+             DisplayName="$Resources:Fields_CategoriesItemMessageCc_Title;"
+             Type="UserMulti"
+             Mult="TRUE"
+             UserSelectionMode="PeopleOnly" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Title" />
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png?rev=23" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle" />
+          <FieldRef Name="CategoriesItemMessageTitle" />
+          <FieldRef Name="CategoriesItemMessageTo" />
+          <FieldRef Name="CategoriesItemMessageCc" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Title" />
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns="http://schemas.microsoft.com/sharepoint/"
+      xmlns:ows="Microsoft SharePoint"
+      Title="$Resources:Lists_Messages_Title;"
+      Direction="$Resources:Direction;"
+      DisableAttachments="TRUE"
+      FolderCreation="FALSE"
+      Url="Lists/Messages"
+      BaseType="0">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01"
+                   Name="MessagesItem"
+                   Inherits="TRUE"
+                   Version="0">
+        <FieldRefs>
+          <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" />
+          <FieldRef ID="{4fa6af15-5e0a-44f3-8077-85556cfc1200}" Name="MessagesItemTo" />
+          <FieldRef ID="{0e88179d-9a53-4c86-b487-07ad2844f20d}" Name="MessagesItemCc" />
+          <FieldRef ID="{ebb22d18-c8a6-42e2-81c2-eb49b23f75fc}" Name="MessagesItemFrom" />
+          <FieldRef ID="{5dfd0af6-8d4b-4a32-bbb5-a67850f4e685}" Name="MessagesItemSent" />
+          <FieldRef ID="{a8fdf495-b92a-4f3c-b496-c0033ecb90dc}" Name="MessagesItemText" />
+        </FieldRefs>
+        <Folder TargetName="Item" />
+      </ContentType>
+      <ContentTypeRef ID="0x0120" />
+    </ContentTypes>
+    <Fields>
+      <Field ID="{4fa6af15-5e0a-44f3-8077-85556cfc1200}"
+             Name="MessagesItemTo"
+             DisplayName="$Resources:Fields_MessagesItemTo_Title;"
+             Type="UserMulti"
+             Mult="TRUE"
+             UserSelectionMode="PeopleOnly"
+             Required="TRUE"
+             Indexed="TRUE" />
+      <Field ID="{0e88179d-9a53-4c86-b487-07ad2844f20d}"
+             Name="MessagesItemCc"
+             DisplayName="$Resources:Fields_MessagesItemCc_Title;"
+             Type="UserMulti"
+             Mult="TRUE"
+             UserSelectionMode="PeopleOnly"
+             Indexed="TRUE" />
+      <Field ID="{ebb22d18-c8a6-42e2-81c2-eb49b23f75fc}"
+             Name="MessagesItemFrom"
+             DisplayName="$Resources:Fields_MessagesItemFrom_Title;"
+             Type="User" />
+      <Field ID="{5dfd0af6-8d4b-4a32-bbb5-a67850f4e685}"
+             Name="MessagesItemSent"
+             DisplayName="$Resources:Fields_MessagesItemSent_Title;"
+             Type="DateTime" />
+      <Field ID="{a8fdf495-b92a-4f3c-b496-c0033ecb90dc}"
+             Name="MessagesItemText"
+             DisplayName="$Resources:Fields_MessagesItemText_Title;"
+             Type="Note"
+             Required="TRUE" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" />
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png?rev=23" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitle" />
+          <FieldRef Name="MessagesItemTo" />
+          <FieldRef Name="MessagesItemCc" />
+          <FieldRef Name="MessagesItemFrom" />
+          <FieldRef Name="MessagesItemSent" />
+          <FieldRef Name="MessagesItemText" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" />
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

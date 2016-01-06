@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="Scripts">
+    <File Path="Scripts\jquery-1.9.1.min.js" Url="Scripts/jquery-1.9.1.min.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\feedback.js" Url="Scripts/feedback.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\feedback_resources.en-us.js" Url="Scripts/feedback_resources.en-us.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\home.js" Url="Scripts/home.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\home_resources.en-us.js" Url="Scripts/home_resources.en-us.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\permissions.js" Url="Scripts/permissions.js" ReplaceContent="TRUE" />
+    <File Path="Scripts\permissions_resources.en-us.js" Url="Scripts/permissions_resources.en-us.js" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

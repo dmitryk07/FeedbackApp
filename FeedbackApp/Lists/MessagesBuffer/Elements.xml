@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListTemplate Name="MessagesBuffer"
+                DisplayName="$Resources:Lists_MessagesBuffer_Title;"
+                Description="$Resources:Lists_MessagesBuffer_Description;"
+                Type="10002"
+                BaseType="0"
+                OnQuickLaunch="TRUE"
+                SecurityBits="22"
+                Sequence="410"
+                Image="/_layouts/15/images/itgen.png"
+                Hidden="TRUE" />
+
+  <Field ID="{e3d15f69-f15e-4432-8a7e-23d3c84e3650}"
+         Name="MessagesBufferItemCategory"
+         DisplayName="$Resources:Fields_MessagesBufferItemCategory_Title;"
+         Type="Lookup"
+         List="Lists/Categories"
+         ShowField="Title"
+         Required="TRUE"
+         Group="_Hidden" />
+
+  <Field ID="{4ae35d7b-aa8a-4704-b658-11ca7342377d}"
+         Name="MessagesBufferItemText"
+         DisplayName="$Resources:Fields_MessagesBufferItemText_Title;"
+         Type="Note"
+         Required="TRUE"
+         Group="_Hidden" />
+</Elements>

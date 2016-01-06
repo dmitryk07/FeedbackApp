@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<List xmlns="http://schemas.microsoft.com/sharepoint/"
+      xmlns:ows="Microsoft SharePoint"
+      Title="$Resources:Lists_MessagesBuffer_Title;"
+      Direction="$Resources:Direction;"
+      DisableAttachments="TRUE"
+      FolderCreation="FALSE"
+      Url="Lists/MessagesBuffer"
+      BaseType="0">
+  <MetaData>
+    <ContentTypes>
+      <ContentType ID="0x01"
+                   Name="MessagesBufferItem"
+                   Inherits="TRUE"
+                   Version="0">
+        <FieldRefs>
+          <FieldRef ID="{e3d15f69-f15e-4432-8a7e-23d3c84e3650}" Name="MessagesBufferItemCategory" />
+          <FieldRef ID="{4ae35d7b-aa8a-4704-b658-11ca7342377d}" Name="MessagesBufferItemText" />
+        </FieldRefs>
+        <Folder TargetName="Item" />
+      </ContentType>
+      <ContentTypeRef ID="0x0120" />
+    </ContentTypes>
+    <Fields>
+      <Field ID="{e3d15f69-f15e-4432-8a7e-23d3c84e3650}"
+             Name="MessagesBufferItemCategory"
+             DisplayName="$Resources:Fields_MessagesBufferItemCategory_Title;"
+             Type="Lookup"
+             List="Lists/Categories"
+             ShowField="Title"
+             Required="TRUE" />
+      <Field ID="{4ae35d7b-aa8a-4704-b658-11ca7342377d}"
+             Name="MessagesBufferItemText"
+             DisplayName="$Resources:Fields_MessagesBufferItemText_Title;"
+             Type="Note"
+             Required="TRUE" />
+    </Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML" MobileView="TRUE" TabularView="FALSE">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Edit" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" />
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="AddNewAnnouncement" Location="Resource(wss,addnewitem)" />
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_ONET_HOME)" />
+        </ParameterBindings>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" MobileView="TRUE" MobileDefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/15/images/generic.png?rev=23" Url="AllItems.aspx">
+        <Toolbar Type="Standard" />
+        <XslLink Default="TRUE">main.xsl</XslLink>
+        <JSLink>clienttemplates.js</JSLink>
+        <RowLimit Paged="TRUE">30</RowLimit>
+        <ViewFields>
+          <FieldRef Name="Edit" />
+          <FieldRef Name="MessagesBufferItemCategory" />
+          <FieldRef Name="Author" />
+          <FieldRef Name="Created" />
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID" />
+          </OrderBy>
+        </Query>
+        <ParameterBindings>
+          <ParameterBinding Name="NoAnnouncements" Location="Resource(wss,noXinviewofY_LIST)" />
+          <ParameterBinding Name="NoAnnouncementsHowTo" Location="Resource(wss,noXinviewofY_DEFAULT)" />
+        </ParameterBindings>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+  </MetaData>
+</List>

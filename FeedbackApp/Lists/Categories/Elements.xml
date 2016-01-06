@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListTemplate Name="Categories"
+                DisplayName="$Resources:Lists_Categories_Title;"
+                Description="$Resources:Lists_Categories_Description;"
+                Type="10000"
+                BaseType="0"
+                OnQuickLaunch="TRUE"
+                SecurityBits="11"
+                Sequence="410"
+                Image="/_layouts/15/images/itgen.png"
+                Hidden="TRUE" />
+
+  <Field ID="{ebe93b4f-b28c-4363-98e0-3398ac101472}"
+         Name="CategoriesItemMessageTitle"
+         DisplayName="$Resources:Fields_CategoriesItemMessageTitle_Title;"
+         Type="Text"
+         Required="TRUE"
+         Group="_Hidden" />
+
+  <Field ID="{72d7543d-bfcd-4fc7-9ae1-437f56c06000}"
+         Name="CategoriesItemMessageTo"
+         DisplayName="$Resources:Fields_CategoriesItemMessageTo_Title;"
+         Type="UserMulti"
+         Mult="TRUE"
+         UserSelectionMode="PeopleOnly"
+         Required="TRUE"
+         Group="_Hidden" />
+
+  <Field ID="{6893f633-8176-4308-874c-023b2877ab90}"
+         Name="CategoriesItemMessageCc"
+         DisplayName="$Resources:Fields_CategoriesItemMessageCc_Title;"
+         Type="UserMulti"
+         Mult="TRUE"
+         UserSelectionMode="PeopleOnly"
+         Group="_Hidden" />
+</Elements>
