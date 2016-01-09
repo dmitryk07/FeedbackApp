@@ -3,13 +3,13 @@
 
     get_categoryHeaderTitle: function () { return "Message category:"; },
     get_messageHeaderTitle: function () { return "Message text:"; },
-    get_requiredFieldTitle: function () { return "This is a required field." },
+    get_requiredFieldTitle: function () { return "This is a required field."; },
 
-    get_loadingOptionTitle: function () { return "Loading ..." },
-    get_noTitleOptionTitle: function () { return "No title" },
+    get_loadingOptionTitle: function () { return "Loading ..."; },
+    get_noTitleOptionTitle: function () { return "No title"; },
 
-    get_categorySelectTitle: function () { return "Category" },
-    get_messageTextAreaTitle: function () { return "Message text" },
+    get_categorySelectTitle: function () { return "Category"; },
+    get_messageTextAreaTitle: function () { return "Message text"; },
 
     get_noCategoriesListErrorText: function () { return "Categories list does not exist or you do not have permission to perform this operation."; },
     get_noCategoriesListItemsErrorText: function () { return "Categories list is empty. Please, address to the System administrator to complete the configuration process."; },
